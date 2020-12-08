@@ -15,10 +15,6 @@ ResqueWeb::Engine.routes.draw do
     member do
       put 'retry'
     end
-    collection do
-      put 'retry_all'
-      delete 'destroy_all'
-    end
   end
 
   get '/stats' => 'stats#index'
