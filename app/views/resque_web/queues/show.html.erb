@@ -1,13 +1,5 @@
   <h1>Pending jobs on <span class='hl'><%= params[:id] %></span></h1>
 
-  <%= form_tag(clear_queue_path(params[:id]), :method => :put) do %>
-    <%= submit_tag "Clear Pending Jobs", :class => 'btn btn-danger', :data => { :confirm => "Are you absolutely sure? This cannot be undone." } %>
-  <% end %>
-
-  <%= form_tag(queue_path(params[:id]), :method => :delete, :class => 'remove-queue') do %>
-    <%= submit_tag "Remove Queue", :class => 'btn btn-danger', :data => { :confirm => "Are you absolutely sure? This cannot be undone." } %>
-  <% end %>
-
   <p class="sub">Showing <%= queue_start_at %> to <%= queue_end_at %> of <b><%= queue_size %></b> jobs</p>
   <table class="table table-bordered jobs">
     <tr>
