@@ -1,5 +1,6 @@
 module ResqueWeb
   class FailuresController < ResqueWeb::ApplicationController
+    before_action :capture_action, only: %i[destroy retry]
 
     # Display all jobs in the failure queue
     #
@@ -22,6 +23,10 @@ module ResqueWeb
     end
 
     private
+
+    def capture_action
+      CaptureFailureAction.call(self)
+    end
 
     #API agnostic for Resque 2 with duck typing on requeue_and_remove
     def reque_single_job(id)
