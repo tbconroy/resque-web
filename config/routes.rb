@@ -9,19 +9,11 @@ ResqueWeb::Engine.routes.draw do
 
   resource  :overview,  :only => [:show], :controller => :overview
   resources :working,   :only => [:index]
-  resources :queues,    :only => [:index,:show,:destroy], :constraints => {:id => id_pattern} do
-    member do
-      put 'clear'
-    end
-  end
+  resources :queues,    :only => [:index,:show], :constraints => {:id => id_pattern}
   resources :workers,   :only => [:index,:show], :constraints => {:id => id_pattern}
   resources :failures,  :only => [:show,:index,:destroy] do
     member do
       put 'retry'
-    end
-    collection do
-      put 'retry_all'
-      delete 'destroy_all'
     end
   end
 
